@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import { 
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS,
-  WS_REQUEST, WS_SUCCESS, WS_FAILURE
+  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS
 } from './actions'
 
 // The auth reducer. The starting state sets authentication
@@ -42,37 +41,10 @@ function auth(state = {
     }
 }
 
-function wsConn(state = {
-    isFetching: false,
-    connection: null
-  }, action) {
-  switch (action.type) {
-    case WS_REQUEST:
-      console.log('action: requesting websocket:', action)
-      return Object.assign({}, state, {
-        isFetching: true
-      })
-    case WS_SUCCESS:
-      console.log("WS_SUCCESS!", action.connection)
-      return Object.assign({}, state, {
-        isFetching: false,
-        connection: action.connection
-      })
-    case WS_FAILURE:
-      console.log('requesting websocket: failure:', action)
-      return Object.assign({}, state, {
-        isFetching: false,
-        errorMessage: 'failed! '
-      })    
-    default:
-      return state
-  }
-}
 // We combine the reducers here so that they
 // can be left split apart above
 const userLogin = combineReducers({
-  auth,
-  wsConn
+  auth
 })
 
 export default userLogin

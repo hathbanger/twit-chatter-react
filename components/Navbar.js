@@ -1,20 +1,13 @@
 import React, { Component, PropTypes } from 'react'
 import Login from './Login'
 import Logout from './Logout'
-import { loginUser, logoutUser, connectWebsocket } from '../actions'
+import { loginUser, logoutUser } from '../actions'
 
 export default class Navbar extends Component {
   
-  componentDidMount(){
-    console.log('from nav.', this.props)
-  }
-
   render() {
-    const { dispatch, connection, isAuthenticated, errorMessage } = this.props
-    if(connection){
-      console.log('connection', this.props.connection)
-    }
-    
+    const { dispatch, isAuthenticated, errorMessage } = this.props
+
     return (
       <nav className='navbar navbar-light bg-faded'>
         <div className='container-fluid'>
@@ -42,7 +35,6 @@ export default class Navbar extends Component {
 }
 
 Navbar.propTypes = {
-  connection: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string

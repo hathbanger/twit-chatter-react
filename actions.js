@@ -3,13 +3,11 @@
 
 // There are three possible states for our login
 // process and we need actions for each of them
-export const LOGIN_REQUEST = 'LOGIN_REQUEST'
-export const LOGIN_SUCCESS = 'LOGIN_SUCCESS'
-export const LOGIN_FAILURE = 'LOGIN_FAILURE'
+import * as constants from './constants'
 
 function requestLogin(creds) {
   return {
-    type: LOGIN_REQUEST,
+    type: constants.LOGIN_REQUEST,
     isFetching: true,
     isAuthenticated: false,
     creds
@@ -19,7 +17,7 @@ function requestLogin(creds) {
 function receiveLogin(user) {
   console.log('user', user)
   return {
-    type: LOGIN_SUCCESS,
+    type: constants.LOGIN_SUCCESS,
     isFetching: false,
     isAuthenticated: true,
     id_token: user.id_token
@@ -28,7 +26,7 @@ function receiveLogin(user) {
 
 function loginError(message) {
   return {
-    type: LOGIN_FAILURE,
+    type: constants.LOGIN_FAILURE,
     isFetching: false,
     isAuthenticated: false,
     message
@@ -39,13 +37,11 @@ function loginError(message) {
 // Since we are using JWTs, we just need to remove the token
 // from localStorage. These actions are more useful if we
 // were calling the API to log the user out
-export const LOGOUT_REQUEST = 'LOGOUT_REQUEST'
-export const LOGOUT_SUCCESS = 'LOGOUT_SUCCESS'
-export const LOGOUT_FAILURE = 'LOGOUT_FAILURE'
+
 
 function requestLogout() {
   return {
-    type: LOGOUT_REQUEST,
+    type: constants.LOGOUT_REQUEST,
     isFetching: true,
     isAuthenticated: true
   }
@@ -53,7 +49,7 @@ function requestLogout() {
 
 function receiveLogout() {
   return {
-    type: LOGOUT_SUCCESS,
+    type: constants.LOGOUT_SUCCESS,
     isFetching: false,
     isAuthenticated: false
   }
@@ -105,25 +101,22 @@ export function logoutUser() {
   }
 }
 
-export const WS_REQUEST = 'WS_REQUEST'
-export const WS_SUCCESS = 'WS_SUCCESS'
-export const WS_FAILURE = 'WS_FAILURE'
 
-function updateState(connection){
-  return {
-    type: WS_SUCCESS,
-    connection: connection
-  }
-}
+// function updateState(connection){
+//   return {
+//     type: constants.WS_SUCCESS,
+//     connection: connection
+//   }
+// }
 
-// Uses the API middlware to get a quote
-export function connectWebsocket() {
-  let connection = new WebSocket('ws://localhost:1323/ws');
+// // Uses the API middlware to get a quote
+// export function connectWebsocket() {
+//   let connection = new WebSocket('ws://localhost:1323/ws');
   
-  return dispatch => {
-    dispatch(updateState(connection))
-  }
+//   return dispatch => {
+//     dispatch(updateState(connection))
+//   }
   
   
-}
+// }
 

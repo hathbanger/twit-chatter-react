@@ -6,14 +6,9 @@ import Navbar from '../components/Navbar'
 import Home from '../components/Home'
 
 class App extends Component {
-
-  componentDidMount(){
-    let dispatch = this.props.dispatch
-    dispatch(connectWebsocket())
-  }
   
   render() {
-    const { dispatch, wsConn,  isAuthenticated, errorMessage } = this.props
+    const { dispatch,  isAuthenticated, errorMessage } = this.props
 
     return (
       <div>
@@ -21,11 +16,9 @@ class App extends Component {
           isAuthenticated={isAuthenticated}
           errorMessage={errorMessage}
           dispatch={dispatch}
-          connection={wsConn.connection}
         />
         <Home
           dispatch={dispatch}
-          connection={wsConn.connection}
           isAuthenticated={isAuthenticated}
         />
       </div>
@@ -34,7 +27,6 @@ class App extends Component {
 }
 
 App.propTypes = {
-  wsConn: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string
@@ -42,12 +34,10 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   
-  const { auth, connection, wsConn } = state
+  const { auth } = state
   const { isAuthenticated, errorMessage } = auth
   
   return {
-    wsConn,
-    connection,
     isAuthenticated,
     errorMessage
   }

@@ -1,17 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 
-import Chat from './Chat'
-import { connectWebsocket } from '../actions'
-
 export default class Home extends Component {
   
 
   render() {
-    const { dispatch, connection, isAuthenticated, errorMessage } = this.props
+    const { dispatch, isAuthenticated, errorMessage } = this.props
     return (
       <div className="container">
         <div className="jumbotron">
-              <Chat connection={this.props.connection} />
+          <h1>hello from home!</h1>
         </div>
       </div>
     )
@@ -20,7 +17,6 @@ export default class Home extends Component {
 }
 
 Home.propTypes = {
-  connection: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string
