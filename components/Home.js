@@ -8,7 +8,12 @@ export default class Home extends Component {
     return (
       <div className="container">
         <div className="jumbotron">
-          <h1>hello from home!</h1>
+          {!isAuthenticated &&
+            <h1>Please login..</h1>
+          }
+          {isAuthenticated &&
+            <h1>hello from home!</h1>
+          }
         </div>
       </div>
     )
