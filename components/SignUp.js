@@ -8,24 +8,24 @@ export default class SignUp extends Component {
     return (
         <div className='row'>
           <div className="container">
-          <div className="col-md-6 col-md-offset-3">          
-              <h4 className="text-center">Sign up</h4>
-              <div className="form-group row">
-                <div className="col-sm-10">
-                  <input type='text' ref='username' className="form-control" placeholder='Username'/>
+            <div className="col-md-6 col-md-offset-3">          
+                <h4 className="text-center">Sign up</h4>
+                <div className="form-group row">
+                  <div className="col-sm-10">
+                    <input type='text' ref='username' className="form-control" placeholder='Username'/>
+                  </div>
                 </div>
-              </div>
-              <div className="form-group row">
-                <div className="col-sm-10">
-                  <input type='password' ref='password' className="form-control" placeholder='Password'/>
+                <div className="form-group row">
+                  <div className="col-sm-10">
+                    <input type='password' ref='password' className="form-control" placeholder='Password'/>
+                  </div>
                 </div>
-              </div>
-              <div className="form-group row">
-                <div className="offset-sm-2 col-sm-10">
-                  <button onClick={(event) => this.handleClick(event)} className="btn btn-primary btn-block">Sign up</button>
+                <div className="form-group row">
+                  <div className="offset-sm-2 col-sm-10">
+                    <button onClick={(event) => this.handleClick(event)} className="btn btn-primary btn-block">Sign up</button>
+                  </div>
                 </div>
-              </div>
-          </div> 
+            </div> 
           </div> 
         </div> 
     )

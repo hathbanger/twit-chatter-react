@@ -12,15 +12,18 @@ function auth(state = {
   }, action) {
   switch (action.type) {
     case LOGIN_REQUEST:
+    console.log('login request', action)
       return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: false,
-        user: action.creds
+        user: action.creds.username
       })
     case LOGIN_SUCCESS:
+    console.log('login success', action)
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
+        username: action.username,
         errorMessage: ''
       })
     case LOGIN_FAILURE:
