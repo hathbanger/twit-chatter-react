@@ -1,4 +1,5 @@
 import React, { Component, PropTypes } from 'react'
+import SignUpContainer from '../containers/SignUpContainer'
 
 export default class Home extends Component {
   
@@ -9,7 +10,9 @@ export default class Home extends Component {
       <div className="container">
         <div className="jumbotron">
           {!isAuthenticated &&
-            <h1>Please login..</h1>
+            <div>
+              <SignUpContainer dispatch={dispatch} />
+            </div>          
           }
           {isAuthenticated &&
             <h1>hello from home!</h1>

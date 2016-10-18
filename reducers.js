@@ -1,5 +1,7 @@
 import { combineReducers } from 'redux'
-import * as constants from './constants'
+import { 
+  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS
+} from './actions'
 
 // The auth reducer. The starting state sets authentication
 // based on a token being in local storage. In a real app,
@@ -9,26 +11,26 @@ function auth(state = {
     isAuthenticated: localStorage.getItem('id_token') ? true : false
   }, action) {
   switch (action.type) {
-    case constants.LOGIN_REQUEST:
+    case LOGIN_REQUEST:
       return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: false,
         user: action.creds
       })
-    case constants.LOGIN_SUCCESS:
+    case LOGIN_SUCCESS:
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: true,
         errorMessage: ''
       })
-    case constants.LOGIN_FAILURE:
+    case LOGIN_FAILURE:
 
       return Object.assign({}, state, {
         isFetching: false,
         isAuthenticated: false,
         errorMessage: action.message
       })
-    case constants.LOGOUT_SUCCESS:
+    case LOGOUT_SUCCESS:
       return Object.assign({}, state, {
         isFetching: true,
         isAuthenticated: false
