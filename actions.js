@@ -1,19 +1,6 @@
-
-
-
 export const SEARCH_REQUEST = 'SEARCH_REQUEST'
 export const SEARCH_SUCCESS = 'SEARCH_SUCCESS'
 export const SEARCH_FAILURE = 'SEARCH_FAILURE'
-
-
-export const TWITMSG_REQUEST = 'TWITMSG_REQUEST'
-export const TWITMSG_SUCCESS = 'TWITMSG_SUCCESS'
-export const TWITMSG_FAILURE = 'TWITMSG_FAILURE'
-
-export const WS_REQUEST = 'WS_REQUEST'
-export const WS_SUCCESS = 'WS_SUCCESS'
-export const WS_FAILURE = 'WS_FAILURE'
-
 
 export function streamSearchTerm(term){
     return dispatch => {
@@ -35,6 +22,11 @@ function requestSearchTerm(){
     }
   
 }
+
+
+export const TWITMSG_REQUEST = 'TWITMSG_REQUEST'
+export const TWITMSG_SUCCESS = 'TWITMSG_SUCCESS'
+export const TWITMSG_FAILURE = 'TWITMSG_FAILURE'
 
 
 
@@ -65,6 +57,9 @@ function updateMessages(message){
 
 
 
+export const WS_REQUEST = 'WS_REQUEST'
+export const WS_SUCCESS = 'WS_SUCCESS'
+export const WS_FAILURE = 'WS_FAILURE'
 
 // Uses the API middlware to get a quote
 export function connectWebsocket() {
