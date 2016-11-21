@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import { 
-   WS_REQUEST, WS_SUCCESS, WS_FAILURE, TWITMSG_REQUEST, TWITMSG_SUCCESS, TWITMSG_FAILURE
+   WS_REQUEST, WS_SUCCESS, WS_FAILURE, TWITMSG_REQUEST, TWITMSG_SUCCESS, TWITMSG_FAILURE, SEARCH_REQUEST, SEARCH_SUCCESS, SEARCH_FAILURE
 } from './actions'
 
 // The auth reducer. The starting state sets authentication
@@ -62,10 +62,35 @@ function twitMsg(state = {
       return state
   }
 }
+function searchTwit(state = {
+    isFetching: false,
+    searchTerm: ""
+  }, action) {
+  switch (action.type) {
+    case SEARCH_REQUEST:
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case SEARCH_SUCCESS:
+    console.log('action from reducer', action.searchTerm)
+      return Object.assign({}, state, {
+        isFetching: false,
+        searchTerm: action.searchTerm
+      })
+    case SEARCH_FAILURE:
+      return Object.assign({}, state, {
+        isFetching: false,
+        errorMessage: 'failed! '
+      })    
+    default:
+      return state
+  }
+}
 // We combine the reducers here so that they
 // can be left split apart above
 const userLogin = combineReducers({
   twitMsg,
+  searchTwit,
   wsConn
 })
 

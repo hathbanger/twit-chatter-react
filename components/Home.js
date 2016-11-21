@@ -5,8 +5,7 @@ export default class Home extends Component {
   
 
   render() {
-    const { dispatch,  connection, messages, errorMessage } = this.props
-    console.log('this.state', this.state)
+    const { dispatch,  connection, messages, searchTerm, errorMessage } = this.props
     
     return (
       <div className="container">
@@ -16,7 +15,8 @@ export default class Home extends Component {
               <ChatContainer 
                 dispatch={dispatch} 
                 connection={connection} 
-                messages={this.props.messages} />
+                messages={this.props.messages}
+                searchTerm={this.props.searchTerm} />
             </div>
           }
         </div>
@@ -27,6 +27,7 @@ export default class Home extends Component {
 }
 
 Home.propTypes = {
+  searchTerm: PropTypes.string,
   messages: PropTypes.array,
   connection: PropTypes.object,
   dispatch: PropTypes.func.isRequired,

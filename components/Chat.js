@@ -15,14 +15,10 @@ export default class Chat extends Component {
           <div className="container">
             <div className="col-md-6 col-md-offset-3">          
                 <div className="form-group row">
-                  <div className="col-sm-10">
-                    <input ref='chatMessage' className="form-control" placeholder='Message'/>
-                  </div>
+                    <input ref='chatMessage' style={{width: "100%"}} className="form-control" placeholder='Message'/>
                 </div>
                 <div className="form-group row">
-                  <div className="offset-sm-2 col-sm-10">
-                    <button onClick={(event) => this.handleClick(event)} className="btn btn-primary btn-block">Sign up</button>
-                  </div>
+                    <button onClick={(event) => this.handleClick(event)} style={{width: "100%"}} className="btn btn-primary btn-block">Sign up</button>
                 </div>
             </div> 
           </div> 

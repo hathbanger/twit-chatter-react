@@ -10,14 +10,14 @@ class App extends Component {
   }
     
   render() {
-    const { dispatch, wsConn, messages } = this.props
-    console.log('this.state', messages)
+    const { dispatch, wsConn, messages, searchTerm } = this.props
     return (
       <div>
         <Home
           dispatch={dispatch}
           connection={wsConn.connection}
           messages={this.props.messages}
+          searchTerm={this.props.searchTerm}
         />
       </div>
     )
@@ -25,6 +25,7 @@ class App extends Component {
 }
 
 App.propTypes = {
+  searchTerm: PropTypes.string,
   messages: PropTypes.array,
   wsConn: PropTypes.object,
   dispatch: PropTypes.func.isRequired
@@ -32,12 +33,14 @@ App.propTypes = {
 
 function mapStateToProps(state) {
   
-  const { connection, twitMsg, wsConn } = state
+  const { connection, twitMsg, wsConn, searchTwit } = state
   const { messages } = twitMsg
+  const { searchTerm } = searchTwit
   
   return {
     wsConn,
     twitMsg,
+    searchTerm,
     messages,
     connection
   }

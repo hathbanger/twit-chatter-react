@@ -20,11 +20,12 @@ class ChatContainer extends Component {
   }
   
   render() {
-    const { dispatch, connection, messages } = this.props
+    const { dispatch, connection, searchTerm, messages } = this.props
     let messagesArray = this.props.messages
     return (
       <div className="text-center">
       
+        <h4 className="text-xs-center"><small>Live tweets for: </small><strong>{this.props.searchTerm}</strong></h4>
         { messagesArray.length == 0 &&
           <Chat 
             connection={connection}
@@ -46,6 +47,7 @@ class ChatContainer extends Component {
 }
 
 ChatContainer.propTypes = {
+  searchTerm: PropTypes.string,
   messages: PropTypes.array,
   dispatch: PropTypes.func.isRequired
 }
