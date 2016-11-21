@@ -1,25 +1,23 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import { loginUser, connectWebsocket } from '../actions'
-import Login from '../components/Login'
-import Navbar from '../components/Navbar'
+import { connectWebsocket } from '../actions'
 import Home from '../components/Home'
 
 class App extends Component {
-  
-  render() {
-    const { dispatch,  isAuthenticated, errorMessage } = this.props
+  componentDidMount(){
+    let dispatch = this.props.dispatch
+    dispatch(connectWebsocket())
+  }
     
+  render() {
+    const { dispatch, wsConn, messages } = this.props
+    console.log('this.state', messages)
     return (
       <div>
-        <Navbar
-          isAuthenticated={isAuthenticated}
-          errorMessage={errorMessage}
-          dispatch={dispatch}
-        />
         <Home
           dispatch={dispatch}
-          isAuthenticated={isAuthenticated}
+          connection={wsConn.connection}
+          messages={this.props.messages}
         />
       </div>
     )
@@ -27,19 +25,21 @@ class App extends Component {
 }
 
 App.propTypes = {
-  dispatch: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
-  errorMessage: PropTypes.string
+  messages: PropTypes.array,
+  wsConn: PropTypes.object,
+  dispatch: PropTypes.func.isRequired
 }
 
 function mapStateToProps(state) {
   
-  const { auth } = state
-  const { isAuthenticated, errorMessage } = auth
+  const { connection, twitMsg, wsConn } = state
+  const { messages } = twitMsg
   
   return {
-    isAuthenticated,
-    errorMessage
+    wsConn,
+    twitMsg,
+    messages,
+    connection
   }
 }
 

@@ -1,21 +1,23 @@
 import React, { Component, PropTypes } from 'react'
-import SignUpContainer from '../containers/SignUpContainer'
+import ChatContainer from '../containers/ChatContainer'
 
 export default class Home extends Component {
   
 
   render() {
-    const { dispatch, isAuthenticated, errorMessage } = this.props
+    const { dispatch,  connection, messages, errorMessage } = this.props
+    console.log('this.state', this.state)
+    
     return (
       <div className="container">
         <div className="jumbotron">
-          {!isAuthenticated &&
+          {connection && 
             <div>
-              <SignUpContainer dispatch={dispatch} />
-            </div>          
-          }
-          {isAuthenticated &&
-            <h1>hello from home!</h1>
+              <ChatContainer 
+                dispatch={dispatch} 
+                connection={connection} 
+                messages={this.props.messages} />
+            </div>
           }
         </div>
       </div>
@@ -25,7 +27,8 @@ export default class Home extends Component {
 }
 
 Home.propTypes = {
+  messages: PropTypes.array,
+  connection: PropTypes.object,
   dispatch: PropTypes.func.isRequired,
-  isAuthenticated: PropTypes.bool.isRequired,
   errorMessage: PropTypes.string
 }

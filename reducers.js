@@ -1,52 +1,72 @@
 import { combineReducers } from 'redux'
 import { 
-  LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_FAILURE, LOGOUT_SUCCESS
+   WS_REQUEST, WS_SUCCESS, WS_FAILURE, TWITMSG_REQUEST, TWITMSG_SUCCESS, TWITMSG_FAILURE
 } from './actions'
 
 // The auth reducer. The starting state sets authentication
 // based on a token being in local storage. In a real app,
 // we would also want a util to check if the token is expired.
-function auth(state = {
+
+
+function wsConn(state = {
     isFetching: false,
-    isAuthenticated: localStorage.getItem('id_token') ? true : false
+    connection: null
   }, action) {
   switch (action.type) {
-    case LOGIN_REQUEST:
-    console.log('login request', action)
+    case WS_REQUEST:
+      console.log('action: requesting websocket:', action)
       return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false,
-        user: action.creds.username
+        isFetching: true
       })
-    case LOGIN_SUCCESS:
-    console.log('login success', action)
+    case WS_SUCCESS:
+      console.log("WS_SUCCESS!", action.connection)
       return Object.assign({}, state, {
         isFetching: false,
-        isAuthenticated: true,
-        username: action.username,
-        errorMessage: ''
+        connection: action.connection
       })
-    case LOGIN_FAILURE:
-
+    case WS_FAILURE:
+      console.log('requesting websocket: failure:', action)
       return Object.assign({}, state, {
         isFetching: false,
-        isAuthenticated: false,
-        errorMessage: action.message
-      })
-    case LOGOUT_SUCCESS:
-      return Object.assign({}, state, {
-        isFetching: true,
-        isAuthenticated: false
-      })
+        errorMessage: 'failed! '
+      })    
     default:
       return state
-    }
+  }
 }
 
+function twitMsg(state = {
+    isFetching: false,
+    messages: []
+  }, action) {
+  switch (action.type) {
+    case TWITMSG_REQUEST:
+      console.log('action: requesting websocket:', action)
+      return Object.assign({}, state, {
+        isFetching: true
+      })
+    case TWITMSG_SUCCESS:
+      console.log("TWITMSG_SUCCESS!", action)
+      return Object.assign({}, state, {
+        // isFetching: false,
+        connection: action,
+        messages: action.messages
+      })
+    case TWITMSG_FAILURE:
+      console.log('requesting websocket: failure:', action)
+      return Object.assign({}, state, {
+        // isFetching: false,
+        errorMessage: 'failed! '
+      })    
+    default:
+      return state
+  }
+}
 // We combine the reducers here so that they
 // can be left split apart above
 const userLogin = combineReducers({
-  auth
+  twitMsg,
+  wsConn
 })
 
 export default userLogin

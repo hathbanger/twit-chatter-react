@@ -6,7 +6,7 @@
   "scripts": {
     "server": "node server/server.js",
     "start": "node server.js",
-    "api": "cd ~/work/src/github.com/user-base && go run main.go"
+    "api": "cd ~/work/src/github.com/go-chatter && go run main.go"
   },
   "author": "",
   "license": "ISC",
