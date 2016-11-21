@@ -25,7 +25,7 @@ class ChatContainer extends Component {
     return (
       <div className="text-center">
       
-        <h4 className="text-xs-center"><small>Live tweets for: </small><strong>{this.props.searchTerm}</strong></h4>
+        <h2 className="text-xs-center"><small>Live tweets for: </small><strong>{this.props.searchTerm}</strong></h2>
         { messagesArray.length == 0 &&
           <Chat 
             connection={connection}
